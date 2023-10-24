@@ -3,6 +3,17 @@
 {% block content %}
 
 <div class="homePosts">
+    {% if user.is_authenticated %}
+    <p>Signed In As: {{ user.username }}! <a href="{% url 'logout' %}">Log out?</a></p>
+
+    {% else %}
+        <p>You are not logged in.</p>
+        <a href="{% url 'login' %}">Log In</a> |
+        <a href="{% url 'signup' %}">Sign Up</a>
+
+        
+    {% endif %}
+
     {% for post in post_list %}
         <div class="post-entry">
             <h2>
